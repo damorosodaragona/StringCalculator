@@ -54,7 +54,7 @@ public class StringCalculatorTest {
 	@Test
 	public void CalculatorForStringWithSeparators() throws StringCalculatorException {
 		StringCalculator str = new StringCalculator();
-		assertEquals(7, str.add("3\n4"));
+		assertEquals(43, str.add("3\n40"));
 	}
 	
 	@Test(expected = StringCalculatorException.class)
@@ -84,7 +84,19 @@ public class StringCalculatorTest {
 	@Test(expected = StringCalculatorException.class)
 	public void CalculatorForStringWithNegativeNumbers() throws StringCalculatorException {
 		StringCalculator str = new StringCalculator();
-		assertEquals(7, str.add("//;\n3;4,-1"));
+		assertEquals(37, str.add("//;\n30;4,-1"));
+	}
+	
+	@Test
+	public void CalculatorForStringWithNunmberMajorThan1000() throws StringCalculatorException {
+		StringCalculator str = new StringCalculator();
+		assertEquals(19, str.add("//;\n1003;4;5;9;1"));
+	}
+	
+	@Test
+	public void CalculatorForStringWithSeparatorsLengh() throws StringCalculatorException {
+		StringCalculator str = new StringCalculator();
+		assertEquals(1019, str.add("//;;\n1000;;4;;5;;9;;1"));
 	}
 
 }

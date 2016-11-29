@@ -14,23 +14,27 @@ public class StringCalculator {
 		int value = 0;
 
 		if (separator != ",") {
-			char[]  d = numberString.substring(5).toCharArray();
+			String s =  numberString.substring(6).replace(separator, "");
 			
-			
-
+			char[] d = s.toCharArray();
 			for (char c : d) {
 				if (!Character.isDigit(c)) {
-					if(c != separator.charAt(0))
-						throw new StringCalculatorException();
+
+					throw new StringCalculatorException();
+
 				}
 			}
-			
-			numberString = numberString.replace(separator, "");
-			numberString = numberString.replace(separator1, "");
-			numberString = numberString.replace("//", "");
-			for (int i = 0; i < numberString.length(); i++) {
 
-				value += Integer.parseInt(numberString.substring(i, i + 1));
+			String[] d1 = numberString.split(separator1);
+			String[] d3 = d1[1].split(separator);
+
+			for (String d2 : d3) {
+
+				if (Integer.parseInt(d2) > 1001) {
+					value += 0;
+				} else {
+					value += Integer.parseInt(d2);
+				}
 
 			}
 			return value;
@@ -44,13 +48,18 @@ public class StringCalculator {
 
 			}
 
-			numberString = numberString.replace(separator, "");
-			numberString = numberString.replace(separator1, "");
+			if (!numberString.isEmpty()) {
+				numberString = numberString.replace(separator1, separator);
+				String[] d1 = numberString.split(separator);
 
-			for (int i = 0; i < numberString.length(); i++) {
+				for (String d2 : d1) {
 
-				value += Integer.parseInt(numberString.substring(i, i + 1));
-
+					if (Integer.parseInt(d2) > 1001) {
+						value += 0;
+					} else {
+						value += Integer.parseInt(d2);
+					}
+				}
 			}
 			return value;
 		}
@@ -58,7 +67,9 @@ public class StringCalculator {
 
 	private void setSeparator(String numbersString) {
 		if (numbersString.startsWith("//")) {
-			separator = numbersString.substring(2, 3);
+			String[] separatorStr = numbersString.split(separator1);
+			String[] separatorn = separatorStr[0].split("//");
+			separator = separatorn[1];
 		}
 	}
 
