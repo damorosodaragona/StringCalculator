@@ -2,15 +2,19 @@ package it.uniba.tdd;
 
 public class StringCalculator {
 	public int add(String numbersStr) {
-		// Returns the sum of the numbers given in numbersStr
-		// not yet implemented
-		if (numbersStr.equalsIgnoreCase(""))
-			return 0;
-		else if(numbersStr.equalsIgnoreCase("1,2"))
-			return 3;
-		else if(numbersStr.equalsIgnoreCase("3,4"))
-			return 7;
-		else 
-			return 1;
+		return sum(numbersStr);
 	}
+
+	private int sum(String numberString) {
+
+		int value = 0;
+
+		numberString = numberString.replace(",", "");
+
+		for (int i = 0; i < numberString.length(); i++) {
+			value += Integer.parseInt(numberString.substring(i, i + 1));
+		}
+		return value;
+	}
+
 }

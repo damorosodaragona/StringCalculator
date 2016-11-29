@@ -31,5 +31,23 @@ public class StringCalculatorTest {
 		StringCalculator str = new StringCalculator();
 		assertEquals(7, str.add("3,4"));
 	}
+	
+	@Test
+	public void CalculatorForStringWith3Numbers() {
+		StringCalculator str = new StringCalculator();
+		assertEquals(12, str.add("3,4,5"));
+	}
+	
+	@Test
+	public void CalculatorForStringWith4Numbers() {
+		StringCalculator str = new StringCalculator();
+		assertEquals(18, str.add("3,4,5,6"));
+	}
+	
+	@Test
+	public void CalculatorForStringWith10Numbers() {
+		StringCalculator str = new StringCalculator();
+		assertEquals(43, str.add("3,4,5,6,7,8,9,1,0"));
+	}
 
 }
