@@ -68,5 +68,23 @@ public class StringCalculatorTest {
 		StringCalculator str = new StringCalculator();
 		assertEquals(22, str.add("3\n4,5\n9,1"));
 	}
+	
+	@Test
+	public void CalculatorForStringWithNewSeparators() throws StringCalculatorException {
+		StringCalculator str = new StringCalculator();
+		assertEquals(22, str.add("//;\n3;4;5;9;1"));
+	}
+	
+	@Test(expected = StringCalculatorException.class)
+	public void CalculatorForStringWithIllegalNewSeparators() throws StringCalculatorException {
+		StringCalculator str = new StringCalculator();
+		assertEquals(7, str.add("//;\n3;4,1"));
+	}
+	
+	@Test(expected = StringCalculatorException.class)
+	public void CalculatorForStringWithNegativeNumbers() throws StringCalculatorException {
+		StringCalculator str = new StringCalculator();
+		assertEquals(7, str.add("//;\n3;4,-1"));
+	}
 
 }
